@@ -10,6 +10,10 @@ func main() {
 		fmt.Println("Not enough arguments")
 		os.Exit(1)
 	}
-	fmt.Println(os.Args[1], os.Args[2])
+	Command(os.Args[1], os.Args[2])
 	os.Exit(0)
+}
+
+func Command(arg1 string, arg2 string) {
+	fmt.Println(arg1, arg2)
 }
