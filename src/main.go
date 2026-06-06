@@ -11,17 +11,20 @@ func main() {
 		fmt.Println("Usage: mcserver <command> [flags]")
 		os.Exit(1)
 	}
-	switch os.Args[1] {
+	command := os.Args[1]
+	arguments := os.Args[2:]
+
+	switch command {
 	case "create":
 		var name string = ""
-		for i, arg := range os.Args[2:] {
+		for i, arg := range arguments {
 			if arg == "--name" {
 				fmt.Println("Creating server...")
-				if strings.HasPrefix(os.Args[2:][i+1], "--") {
+				if strings.HasPrefix(arguments[i+1], "--") {
 					fmt.Println("--name requires a value")
 					os.Exit(1)
 				} else {
-					name = os.Args[2:][i+1]
+					name = arguments[i+1]
 				}
 			}
 		}
@@ -33,10 +36,10 @@ func main() {
 
 		os.Mkdir(name, 0755)
 	case "start":
-		fmt.Println(os.Args[1], os.Args[2:])
+		fmt.Println(command, arguments)
 		os.Exit(0)
 	default:
-		fmt.Println("Unknown command:", os.Args[1])
+		fmt.Println("Unknown command:", command)
 		os.Exit(1)
 	}
 	os.Exit(0)
