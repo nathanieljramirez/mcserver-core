@@ -13,10 +13,12 @@ func main() {
 	}
 	switch os.Args[1] {
 	case "create":
+		var name string = ""
 		for i, arg := range os.Args[2:] {
 			if arg == "--name" {
 				fmt.Println("Creating server...")
 				if strings.HasPrefix(os.Args[i+1], "--") {
+					name = os.Args[i+1]
 				} else {
 					fmt.Println("--name requires a value")
 					os.Exit(1)
