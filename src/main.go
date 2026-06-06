@@ -7,7 +7,7 @@ import (
 
 func main() {
 	if len(os.Args) < 2 {
-		fmt.Println("Not enough arguments")
+		fmt.Println("Usage: mcserver <command> [flags]")
 		os.Exit(1)
 	}
 	Command(os.Args[1], os.Args[2:])
