@@ -1,6 +1,8 @@
 ## Usage
 
-Coming soon...
+```bash
+mcserver <command> [flags]
+```
 
 ## Compiling
 
