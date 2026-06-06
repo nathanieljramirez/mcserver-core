@@ -18,9 +18,12 @@ func Command(command string, args []string) {
 	switch command {
 	case "create":
 		fmt.Println(command, args)
+		os.Exit(0)
 	case "start":
 		fmt.Println(command, args)
+		os.Exit(0)
 	default:
 		fmt.Println("Unknown command:", command)
+		os.Exit(1)
 	}
 }
