@@ -11,17 +11,12 @@ func main() {
 		fmt.Println("Usage: mcserver <command> [flags]")
 		os.Exit(1)
 	}
-	Command(os.Args[1], os.Args[2:])
-	os.Exit(0)
-}
-
-func Command(command string, args []string) {
-	switch command {
+	switch os.Args[1] {
 	case "create":
-		for i, arg := range args {
+		for i, arg := range os.Args[2:] {
 			if arg == "--name" {
 				fmt.Println("Creating server...")
-				if strings.HasPrefix("--", args[i+1]) {
+				if strings.HasPrefix("--", os.Args[i+1]) {
 				} else {
 				}
 				return
@@ -30,10 +25,11 @@ func Command(command string, args []string) {
 			}
 		}
 	case "start":
-		fmt.Println(command, args)
+		fmt.Println(os.Args[1], os.Args[2:])
 		os.Exit(0)
 	default:
-		fmt.Println("Unknown command:", command)
+		fmt.Println("Unknown command:", os.Args[1])
 		os.Exit(1)
 	}
+	os.Exit(0)
 }
