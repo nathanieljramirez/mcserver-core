@@ -20,6 +20,7 @@ func Command(command string, args []string) {
 		for _, arg := range args {
 			if arg == "--name" {
 				fmt.Println("Creating server...")
+				return
 			} else {
 				fmt.Println("--name needed to create server")
 			}
