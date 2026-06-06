@@ -15,9 +15,10 @@ func main() {
 }
 
 func Command(command string, args []string) {
-	if command == "create" {
+	switch command {
+	case "create":
 		fmt.Println(command, args)
-	} else if command == "start" {
+	case "start":
 		fmt.Println(command, args)
 	}
 }
