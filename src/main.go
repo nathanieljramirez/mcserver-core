@@ -17,8 +17,13 @@ func main() {
 func Command(command string, args []string) {
 	switch command {
 	case "create":
-		fmt.Println(command, args)
-		os.Exit(0)
+		for _, arg := range args {
+			if arg == "--name" {
+				fmt.Println("Creating server...")
+			} else {
+				fmt.Println("--name needed to create server")
+			}
+		}
 	case "start":
 		fmt.Println(command, args)
 		os.Exit(0)
