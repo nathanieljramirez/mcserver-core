@@ -35,8 +35,10 @@ func main() {
 
 		os.Mkdir(flags["--name"], 0755)
 	case "start":
-		fmt.Println(command, arguments)
-		os.Exit(0)
+		if flags["--name"] == "" {
+			fmt.Println("--name needed to start server")
+			os.Exit(1)
+		}
 	default:
 		fmt.Println("Unknown command:", command)
 		os.Exit(1)
