@@ -27,8 +27,12 @@ func main() {
 
 	switch command {
 	case "install":
-		version := arguments[0]
-		fmt.Println(version)
+		if len(arguments) == 0 || strings.HasPrefix(arguments[0], "--") {
+			fmt.Println("Install command needs a version")
+			os.Exit(1)
+		}
+
+		install(arguments[0])
 	case "create":
 		if flags["--name"] == "" {
 			fmt.Println("--name needed to create server")
