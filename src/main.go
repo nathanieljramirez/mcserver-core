@@ -14,9 +14,7 @@ func main() {
 	command := os.Args[1]
 	arguments := os.Args[2:]
 	flags := map[string]string{
-		"--name":    "",
-		"--version": "latest",
-		"--type":    "java",
+		"--name": "",
 	}
 
 	for i, arg := range arguments {
@@ -28,6 +26,9 @@ func main() {
 	}
 
 	switch command {
+	case "install":
+		version := arguments[0]
+		fmt.Println(version)
 	case "create":
 		if flags["--name"] == "" {
 			fmt.Println("--name needed to create server")
