@@ -18,21 +18,21 @@ func main() {
 		"version": "latest",
 	}
 
-	switch command {
-	case "create":
-		for i, arg := range arguments {
-			if arg == "--name" {
-				fmt.Println("Creating server...")
-				if !strings.HasPrefix(arguments[i+1], "--") {
-					flags["name"] = arguments[i+1]
-				}
-			} else if arg == "--version" {
-				if !strings.HasPrefix(arguments[i+1], "--") {
-					flags["version"] = arguments[i+1]
-				}
+	for i, arg := range arguments {
+		if arg == "--name" {
+			fmt.Println("Creating server...")
+			if !strings.HasPrefix(arguments[i+1], "--") {
+				flags["name"] = arguments[i+1]
+			}
+		} else if arg == "--version" {
+			if !strings.HasPrefix(arguments[i+1], "--") {
+				flags["version"] = arguments[i+1]
 			}
 		}
+	}
 
+	switch command {
+	case "create":
 		if flags["name"] == "" {
 			fmt.Println("--name needed to create server")
 			os.Exit(1)
