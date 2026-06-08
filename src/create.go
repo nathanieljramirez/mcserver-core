@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os"
 	"os/exec"
+	"path/filepath"
 )
 
 func create(name string, memory string) {
@@ -17,7 +18,9 @@ func create(name string, memory string) {
 		os.Exit(1)
 	}
 
-	cmd := exec.Command("java", "-jar", config.Jar)
+	path := filepath.Join("..", config.Jar)
+
+	cmd := exec.Command("java", "-jar", path)
 	if memory != "" {
 		cmd = exec.Command("java", "-Xms"+memory+"G", "-Xmx"+memory+"G", "-jar", "--nogui")
 	}
