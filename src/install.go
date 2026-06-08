@@ -28,16 +28,16 @@ func parse(url string, target any) {
 func install(version string) {
 	url := "https://api.papermc.io/v2/projects/paper"
 
-	var paper struct {
+	var PaperResponse struct {
 		Versions []string `json:"versions"`
 	}
 
-	parse(url, &paper)
+	parse(url, &PaperResponse)
 
 	if version == "latest" {
-		version = paper.Versions[len(paper.Versions)-1]
-	} else if !slices.Contains(paper.Versions, version) {
-		fmt.Println("Available versions:", paper.Versions)
+		version = PaperResponse.Versions[len(PaperResponse.Versions)-1]
+	} else if !slices.Contains(PaperResponse.Versions, version) {
+		fmt.Println("Available versions:", PaperResponse.Versions)
 		os.Exit(1)
 	}
 }
