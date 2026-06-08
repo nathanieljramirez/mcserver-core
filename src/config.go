@@ -31,6 +31,7 @@ func readConfig() Config {
 	err = json.Unmarshal(data, &config)
 	if err != nil {
 		fmt.Println("Error parsing JSON:", err)
+		os.Exit(1)
 	}
 
 	return config
