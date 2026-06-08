@@ -25,21 +25,26 @@ func main() {
 		}
 	}
 
+	var subject string
+	if len(arguments) == 0 || strings.HasPrefix(arguments[0], "--") {
+		subject = arguments[0]
+	}
+
 	switch command {
 	case "install":
-		if len(arguments) == 0 || strings.HasPrefix(arguments[0], "--") {
+		if subject == "" {
 			fmt.Println("Install command needs a version")
 			os.Exit(1)
 		}
 
-		install(arguments[0])
+		install(subject)
 	case "create":
-		if len(arguments) == 0 || strings.HasPrefix(arguments[0], "--") {
+		if subject == "" {
 			fmt.Println("Name needed to create server")
 			os.Exit(1)
 		}
 
-		create(arguments[0])
+		create(subject)
 	case "start":
 		if flags["--name"] == "" {
 			fmt.Println("--name needed to start server")
