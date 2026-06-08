@@ -14,7 +14,7 @@ func main() {
 	command := os.Args[1]
 	arguments := os.Args[2:]
 	flags := map[string]string{
-		"--name": "",
+		"--memory": "",
 	}
 
 	for i, arg := range arguments {
@@ -26,7 +26,7 @@ func main() {
 	}
 
 	var subject string
-	if len(arguments) == 0 || strings.HasPrefix(arguments[0], "--") {
+	if len(arguments) != 0 && !strings.HasPrefix(arguments[0], "--") {
 		subject = arguments[0]
 	}
 
@@ -44,7 +44,7 @@ func main() {
 			os.Exit(1)
 		}
 
-		create(subject)
+		create(subject, flags["--memory"])
 	case "start":
 		if flags["--name"] == "" {
 			fmt.Println("--name needed to start server")
