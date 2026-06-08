@@ -39,6 +39,8 @@ func main() {
 			os.Exit(1)
 		}
 
+		create(flags["--name"])
+
 		fmt.Println("Creating server...")
 		os.Mkdir(flags["--name"], 0755)
 	case "start":
