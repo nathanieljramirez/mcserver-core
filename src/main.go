@@ -40,9 +40,6 @@ func main() {
 		}
 
 		create(flags["--name"])
-
-		fmt.Println("Creating server...")
-		os.Mkdir(flags["--name"], 0755)
 	case "start":
 		if flags["--name"] == "" {
 			fmt.Println("--name needed to start server")
