@@ -3,7 +3,9 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"io"
 	"net/http"
+	"os"
 )
 
 func parse(url string, target any) error {
@@ -21,13 +23,40 @@ func parse(url string, target any) error {
 	return json.NewDecoder(resp.Body).Decode(target)
 }
 
+// https://stackoverflow.com/questions/11692860/how-can-i-efficiently-download-a-large-file-using-go
+func downloadFile(filepath string, url string) error {
+	out, err := os.Create(filepath)
+	if err != nil {
+		return err
+	}
+	defer out.Close()
+
+	resp, err := http.Get(url)
+	if err != nil {
+		return err
+	}
+	defer resp.Body.Close()
+
+	if resp.StatusCode != 200 {
+		return fmt.Errorf("%s", resp.Status)
+	}
+
+	_, err = io.Copy(out, resp.Body)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func install(version string) {
 	PaperAPI := "https://fill.papermc.io/v3/projects/paper/versions/" + version + "/builds/latest"
 
 	var PaperResponse struct {
 		Downloads struct {
 			ServerDefault struct {
-				Url string `json:"url"`
+				Name string `json:"name"`
+				Url  string `json:"url"`
 			} `json:"server:default"`
 		} `json:"downloads"`
 	}
@@ -39,5 +68,5 @@ func install(version string) {
 		return
 	}
 
-	fmt.Println(PaperResponse.Downloads.ServerDefault.Url)
+	downloadFile(PaperResponse.Downloads.ServerDefault.Name, PaperResponse.Downloads.ServerDefault.Url)
 }
