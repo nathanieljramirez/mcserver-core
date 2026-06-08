@@ -31,10 +31,8 @@ func install(version string) {
 	}
 
 	if version == "latest" {
-		fmt.Println(paper.Versions[len(paper.Versions)-1])
-	} else if slices.Contains(paper.Versions, version) {
-		fmt.Println(version)
-	} else {
+		version = paper.Versions[len(paper.Versions)-1]
+	} else if !slices.Contains(paper.Versions, version) {
 		fmt.Println("Available versions:", paper.Versions)
 		os.Exit(1)
 	}
