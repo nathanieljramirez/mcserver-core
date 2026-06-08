@@ -14,6 +14,10 @@ func parse(url string, target any) error {
 
 	defer resp.Body.Close()
 
+	if resp.StatusCode != 200 {
+		return fmt.Errorf("%s", resp.Status)
+	}
+
 	return json.NewDecoder(resp.Body).Decode(target)
 }
 
@@ -32,6 +36,7 @@ func install(version string) {
 
 	if err != nil {
 		fmt.Println("Error parsing JSON:", err)
+		return
 	}
 
 	fmt.Println(PaperResponse.Downloads.ServerDefault.Url)
