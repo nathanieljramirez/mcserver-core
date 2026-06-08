@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+	"fmt"
 	"os"
 )
 
@@ -17,4 +18,20 @@ func createConfig(config Config) error {
 	}
 
 	return os.WriteFile("config.json", data, 0644)
+}
+
+func readConfig() Config {
+	var config Config
+	data, err := os.ReadFile("config.json")
+	if err != nil {
+		fmt.Println("Error reading config:", err)
+		os.Exit(1)
+	}
+
+	err = json.Unmarshal(data, &config)
+	if err != nil {
+		fmt.Println("Error parsing JSON:", err)
+	}
+
+	return config
 }
