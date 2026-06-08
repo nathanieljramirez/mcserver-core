@@ -69,4 +69,16 @@ func install(version string) {
 	}
 
 	downloadFile(PaperResponse.Downloads.ServerDefault.Name, PaperResponse.Downloads.ServerDefault.Url)
+
+	type Config struct {
+		Jar string `jar:"version"`
+	}
+
+	config := Config{
+		Jar: PaperResponse.Downloads.ServerDefault.Name,
+	}
+
+	data, err := json.MarshalIndent(config, "", " ")
+
+	os.WriteFile("config.json", data, 0644)
 }
