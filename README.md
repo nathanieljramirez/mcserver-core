@@ -1,7 +1,7 @@
 ## Installing
 
 ```bash
-go get mcserverkit.github.io/core@latest
+go get mcserverkit.github.io@latest
 ```
 
 ## Usage
