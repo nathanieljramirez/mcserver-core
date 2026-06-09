@@ -1,3 +1,3 @@
-module mcserver
+module mcserverkit
 
 go 1.26.2
