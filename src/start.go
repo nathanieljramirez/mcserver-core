@@ -13,7 +13,7 @@ func start(name string, memory string) {
 
 	cmd := exec.Command("java", "-jar", path, "--nogui")
 	if memory != "" {
-		cmd = exec.Command("java", "-Xms"+memory+"G", "-Xmx"+memory+"G", "-jar", "--nogui")
+		cmd = exec.Command("java", "-Xms"+memory, "-Xmx"+memory, "-jar", "--nogui")
 	}
 	cmd.Dir = name
 	err := cmd.Run()
