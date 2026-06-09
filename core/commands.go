@@ -1,7 +1,6 @@
 package core
 
 import (
-	"fmt"
 	"os"
 	"os/exec"
 	"path/filepath"
@@ -51,7 +50,6 @@ func Install(version string) error {
 }
 
 func Create(name string) error {
-	fmt.Println("Creating server...")
 	err := os.Mkdir(name, 0755)
 	if err != nil {
 		return err
