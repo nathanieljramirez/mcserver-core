@@ -3,6 +3,7 @@ package core
 import (
 	"fmt"
 	"os"
+	"path/filepath"
 )
 
 func Create(name string) error {
@@ -12,7 +13,7 @@ func Create(name string) error {
 		return err
 	}
 
-	err = os.WriteFile(name+"/eula.txt", []byte("eula=true"), 0644)
+	err = os.WriteFile(filepath.Join(name, "eula.txt"), []byte("eula=true"), 0644)
 	if err != nil {
 		return err
 	}
