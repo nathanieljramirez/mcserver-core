@@ -1,7 +1,7 @@
 ## Installing
 
 ```bash
-go get mcserverkit.github.io@latest
+go get mcserverkit.github.io
 ```
 
 ## Usage
@@ -10,24 +10,24 @@ go get mcserverkit.github.io@latest
 package main
 
 import (
-  "mcserverkit.github.io/core"
+  "mcserverkit.github.io"
   "fmt"
 )
 
 func main() {
-  err := core.Install("1.21.1")
+  err := mcserverkit.Install("1.21.1")
   if err != nil {
     fmt.Println("Error installing 1.21.1:", err)
     return
   }
 
-  err = core.Create("MyServer")
+  err = mcserverkit.Create("MyServer")
   if err != nil {
     fmt.Println("Error creating MyServer:", err)
     return
   }
 
-  err = core.Start("MyServer", "4G")
+  err = mcserverkit.Start("MyServer", "4G")
   if err != nil {
     fmt.Println("Error starting MyServer:", err)
     return
