@@ -1,3 +1,3 @@
-module mcserverkit.github.io/core
+module mcserverkit.github.io
 
 go 1.26.2
