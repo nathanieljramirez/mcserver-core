@@ -8,19 +8,19 @@ import (
 	"os"
 )
 
-func parse(url string, target any) error {
+func parse(url string, target any) {
 	resp, err := http.Get(url)
 	if err != nil {
-		return err
+		fmt.Println("Error requesting URL:", err)
 	}
 
 	defer resp.Body.Close()
 
 	if resp.StatusCode != 200 {
-		return fmt.Errorf("%s", resp.Status)
+		fmt.Println(resp.Status)
 	}
 
-	return json.NewDecoder(resp.Body).Decode(target)
+	json.NewDecoder(resp.Body).Decode(target)
 }
 
 // https://stackoverflow.com/questions/11692860/how-can-i-efficiently-download-a-large-file-using-go
@@ -56,12 +56,7 @@ func Install(version string) {
 			Versions map[string][]string `json:"versions"`
 		}
 
-		err := parse("https://fill.papermc.io/v3/projects/paper", &VersionResponse)
-
-		if err != nil {
-			fmt.Println("Error parsing JSON:", err)
-			return
-		}
+		parse("https://fill.papermc.io/v3/projects/paper", &VersionResponse)
 
 		version = VersionResponse.Versions["26.1"][0]
 	}
@@ -77,12 +72,7 @@ func Install(version string) {
 		} `json:"downloads"`
 	}
 
-	err := parse(PaperAPI, &PaperResponse)
-
-	if err != nil {
-		fmt.Println("Error parsing JSON:", err)
-		return
-	}
+	parse(PaperAPI, &PaperResponse)
 
 	downloadFile(PaperResponse.Downloads.ServerDefault.Name, PaperResponse.Downloads.ServerDefault.Url)
 
