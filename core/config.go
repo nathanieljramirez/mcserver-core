@@ -11,12 +11,15 @@ type Config struct {
 
 func CreateConfig(config Config) error {
 	data, err := json.MarshalIndent(config, "", " ")
-
 	if err != nil {
 		return err
 	}
 
-	return os.WriteFile("config.json", data, 0644)
+	err = os.WriteFile("config.json", data, 0644)
+	if err != nil {
+		return err
+	}
+	return nil
 }
 
 func ReadConfig() (Config, error) {
