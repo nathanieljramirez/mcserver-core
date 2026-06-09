@@ -3,6 +3,7 @@ package core
 import (
 	"fmt"
 	"os"
+	"os/exec"
 	"path/filepath"
 )
 
@@ -40,6 +41,24 @@ func Create(name string) error {
 	}
 
 	err = os.WriteFile(filepath.Join(name, "eula.txt"), []byte("eula=true"), 0644)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func Start(name string, memory string) error {
+	config := ReadConfig()
+	path := filepath.Join("..", config.Jar)
+
+	cmd := exec.Command("java", "-jar", path, "--nogui")
+	if memory != "" {
+		cmd = exec.Command("java", "-Xms"+memory, "-Xmx"+memory, "-jar", "--nogui")
+	}
+	cmd.Dir = name
+	err := cmd.Run()
+
 	if err != nil {
 		return err
 	}
