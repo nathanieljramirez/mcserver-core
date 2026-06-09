@@ -1,8 +1,10 @@
 ## Usage
 
-```bash
-mcserver <command> [flags]
-```
+`install <version>`
+
+`create <name>`
+
+`start <name> [flags]`
 
 ## Compiling
 
