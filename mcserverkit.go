@@ -60,7 +60,7 @@ func Create(name string) error {
 	return nil
 }
 
-func Start(name string, memory string) error {
+func Start(name string, memory ...string) error {
 	config, err := internal.ReadConfig()
 	if err != nil {
 		return err
@@ -68,8 +68,8 @@ func Start(name string, memory string) error {
 
 	path := filepath.Join("..", config.Jar)
 	cmd := exec.Command("java", "-jar", path, "--nogui")
-	if memory != "" {
-		cmd = exec.Command("java", "-Xms"+memory, "-Xmx"+memory, "-jar", path, "--nogui")
+	if len(memory) > 0 {
+		cmd = exec.Command("java", "-Xms"+memory[0], "-Xmx"+memory[0], "-jar", path, "--nogui")
 	}
 	cmd.Dir = name
 	err = cmd.Run()
