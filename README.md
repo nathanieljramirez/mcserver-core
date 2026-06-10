@@ -8,6 +8,26 @@ A Go library for creating and managing Minecraft servers.
 go get mcserverkit.github.io
 ```
 
+## Usage
+
+Install a server version
+
+```go
+mcserverkit.Install(version string)
+```
+
+Create a server
+
+```go
+mcserverkit.Create(name string, eula bool)
+```
+
+Start your server
+
+```go
+mcserverkit.Start(name string, memory ...string)
+```
+
 ## Example
 
 ```go
