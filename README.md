@@ -2,7 +2,7 @@
 
 A Go library for creating and managing Minecraft servers.
 
-## Installing
+## Installation
 
 ```bash
 go get mcserverkit.github.io
