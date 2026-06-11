@@ -16,6 +16,8 @@ Install a server version
 mcserverkit.Install(version string)
 ```
 
+- `version`: The Minecraft version the server runs on, pass "latest" to install the latest release.
+
 Create a server
 
 ```go
@@ -30,6 +32,9 @@ Start your server
 ```go
 mcserverkit.Start(name string, memory ...string)
 ```
+
+- `name`: Folder name of your server
+- `memory`: (optional) Amount of memory allocated to the server, ex: 4G, 1024M
 
 ## Example
 
